@@ -1,10 +1,11 @@
 ﻿  Main.cpp
+D:\Visual Studio 2019 Projects\AWMapEditor\AWMapEditor\Main.cpp(264,14): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
     正在创建库 D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\AWMapEditor.lib 和对象 D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\AWMapEditor.exp
 LINK : warning LNK4098: 默认库“LIBCMT”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
   正在生成代码
-  1 of 890 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+  1 of 1509 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    12 functions had inline decision re-evaluated but remain unchanged
+    16 functions had inline decision re-evaluated but remain unchanged
   已完成代码的生成
 SDL2_image.lib(IMG.obj) : warning LNK4099: 未找到 PDB“SDL2_image.pdb”(使用“SDL2_image.lib(IMG.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\SDL2_image.pdb”中寻找)；正在链接对象，如同没有调试信息一样
 SDL2_image.lib(IMG_webp.obj) : warning LNK4099: 未找到 PDB“SDL2_image.pdb”(使用“SDL2_image.lib(IMG_webp.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\SDL2_image.pdb”中寻找)；正在链接对象，如同没有调试信息一样

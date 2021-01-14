@@ -9,6 +9,7 @@
 #include <iostream>
 using namespace std;
 #include <io.h>
+#include <ctime>
 
 #pragma comment(lib, "Setupapi.lib")
 #pragma comment(lib, "Winmm.lib")
@@ -32,12 +33,23 @@ using namespace std;
 
 #define MENUITEMLENGTH 4
 
+#define STARNUM 150
+
+struct Star
+{
+	SDL_Point position;
+	SDL_Color color;
+	int radius;
+};
+
 int CurrentScene = SCENE_MAINMENU;
 
 bool bIsRunning = true, bIsMainMenuBgImgMoveDown = true, bIsMainMenuBgImgMoveRight = true;
 
 SDL_Window* pWindow = nullptr;
 SDL_Renderer* pWRenderer = nullptr;
+
+lua_State* pL;
 
 TTF_Font* pFont_XINWEI_125 = nullptr;
 TTF_Font* pFont_XINWEI_70 = nullptr;
@@ -54,6 +66,9 @@ SDL_Surface* pSurfaceMainMenuAuthor = nullptr;
 SDL_Surface* aryPSurfaceMainMenuItems[MENUITEMLENGTH] = { nullptr, nullptr, nullptr, nullptr };
 SDL_Surface* pSurfaceOpenMapScene_Title = nullptr;
 SDL_Surface* aryPSurfaceOpenMapTips[2] = { nullptr, nullptr };
+SDL_Surface* pSurfaceAboutScene_Title = nullptr;
+SDL_Surface* aryPSurfaceAboutScene_Content[2] = { nullptr, nullptr };
+SDL_Surface* pSurfaceAboutScene_Contact = nullptr;
 
 SDL_Texture* pTextureBackground = nullptr;
 SDL_Texture* pTextureMainMenuTitle_Another = nullptr;
@@ -64,6 +79,9 @@ SDL_Texture* pTextureMainMenuAuthor = nullptr;
 SDL_Texture* aryPTextureMainMenuItems[MENUITEMLENGTH] = { nullptr, nullptr, nullptr, nullptr };
 SDL_Texture* pTextureOpenMapScene_Title = nullptr;
 SDL_Texture* aryPTextureOpenMapTips[2] = { nullptr, nullptr };
+SDL_Texture* pTextureAboutScene_Title = nullptr;
+SDL_Texture* aryPTextureAboutScene_Content[2] = { nullptr, nullptr };
+SDL_Texture* pTextureAboutScene_Contact = nullptr;
 
 int iMainMenuItemIndex = 0, iPreMenuItemIndex = MENUITEMLENGTH - 1, iMapListIndex = 0, iMapShowingListFirstIndex = 0;
 
@@ -74,6 +92,7 @@ SDL_Color clrText_MenuItemIdle = { 211, 203, 198, 255 }, clrText_MenuItemHover =
 SDL_Rect rcMainMenuBgImgClip = {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT};
 
 vector<string> vMapList, vShowingMapList;
+vector<Star> vStarList;
 
 void ManageScene(int action, int scene)
 {
@@ -115,6 +134,8 @@ void ManageScene(int action, int scene)
 		}
 		else if (CurrentScene == SCENE_OPENMAP)
 		{
+			lua_close(pL);
+
 			SDL_DestroyTexture(pTextureOpenMapScene_Title);
 			for (auto& pTexture : aryPTextureOpenMapTips)
 				SDL_DestroyTexture(pTexture);
@@ -134,7 +155,20 @@ void ManageScene(int action, int scene)
 		}
 		else if (CurrentScene == SCENE_ABOUT)
 		{
+			SDL_DestroyTexture(pTextureAboutScene_Title);
+			for (auto& pTexture : aryPTextureAboutScene_Content)
+				SDL_DestroyTexture(pTexture);
+			SDL_DestroyTexture(pTextureAboutScene_Contact);
 
+			SDL_FreeSurface(pSurfaceAboutScene_Title);
+			for (auto& pSurface : aryPSurfaceAboutScene_Content)
+				SDL_FreeSurface(pSurface);
+			SDL_FreeSurface(pSurfaceAboutScene_Contact);
+
+			TTF_CloseFont(pFont_XINWEI_70);
+			TTF_CloseFont(pFont_XINWEI_40);
+
+			vStarList.clear();
 		}
 
 		if (action == ACTION_QUIT)
@@ -190,13 +224,15 @@ void ManageScene(int action, int scene)
 		}
 		else if (CurrentScene == SCENE_OPENMAP)
 		{
+			pL = luaL_newstate();
+
 			pFont_XINWEI_40 = TTF_OpenFont("resource/font/STXINWEI.TTF", 40);
 			pFont_XINWEI_30 = TTF_OpenFont("resource/font/STXINWEI.TTF", 30);
 			pFont_XINWEI_25 = TTF_OpenFont("resource/font/STXINWEI.TTF", 25);
 
 			SDL_Color clrText_Title_Front = { 248, 244, 230, 255 }, clrText_Title_Back = { 75, 75, 75, 255 }, clrText_Tip = { 226, 4, 27, 255 };
 
-			pSurfaceOpenMapScene_Title = TTF_RenderUTF8_Shaded(pFont_XINWEI_40, " 打开地图 ", clrText_Title_Front, clrText_Title_Back);
+			pSurfaceOpenMapScene_Title = TTF_RenderUTF8_Shaded(pFont_XINWEI_40, "§ 打开地图 §", clrText_Title_Front, clrText_Title_Back);
 			aryPSurfaceOpenMapTips[0] = TTF_RenderUTF8_Blended(pFont_XINWEI_25, "按下 ↑ ↓ ← → 移动光标，按下 Enter 打开，按下 Esc 退回到主菜单", clrText_Tip);
 			aryPSurfaceOpenMapTips[1] = TTF_RenderUTF8_Blended(pFont_XINWEI_25, "将地图文件放置于“maps”文件夹下，并确保文件名中无中文及其他特殊符号", clrText_Tip);
 
@@ -217,15 +253,42 @@ void ManageScene(int action, int scene)
 						vMapList.push_back(fileinfo.name);
 						if (_index < 8)
 							vShowingMapList.push_back(fileinfo.name);
+						_index++;
 					}
-					_index++;
 				} while (!_findnext(hFile, &fileinfo));
 				_findclose(hFile);
 			}
 		}
 		else if (CurrentScene == SCENE_ABOUT)
 		{
+			srand(time(0));
 
+			for (int i = 0; i < STARNUM; i++)
+			{
+				Star _star;
+				_star.position.x = rand() % WINDOW_WIDTH, _star.position.y = rand() % WINDOW_HEIGHT;
+				_star.color.r = rand() % 255, _star.color.g = rand() % 255, _star.color.b = rand() % 255, _star.color.a = rand() % 255;
+				_star.radius = rand() % 5;
+				vStarList.push_back(_star);
+			}
+
+			pFont_XINWEI_70 = TTF_OpenFont("resource/font/STXINWEI.TTF", 70);
+			pFont_XINWEI_40 = TTF_OpenFont("resource/font/STXINWEI.TTF", 40);
+
+			SDL_Color clrText_Title = { 193, 228, 233, 210 }, clrText_Content = { 255, 241, 207, 210 }, clrText_Contact = { 233, 82, 149, 210 };
+
+			pSurfaceAboutScene_Title = TTF_RenderUTF8_Blended(pFont_XINWEI_70, "Another World Map Editor ★", clrText_Title);
+			aryPSurfaceAboutScene_Content[0] = TTF_RenderUTF8_Blended(pFont_XINWEI_40, "为 Another World MUD 的地图设计辅助工具，", clrText_Content);
+			aryPSurfaceAboutScene_Content[1] = TTF_RenderUTF8_Blended(pFont_XINWEI_40, "源代码根据MIT协议开源，允许一切非商业目的修改和使用", clrText_Content);
+
+			TTF_SetFontStyle(pFont_XINWEI_40, TTF_STYLE_ITALIC | TTF_STYLE_UNDERLINE);
+			pSurfaceAboutScene_Contact = TTF_RenderUTF8_Blended(pFont_XINWEI_40, "联系开发者：Voidmatrix@outlook.com", clrText_Contact);
+			TTF_SetFontStyle(pFont_XINWEI_40, TTF_STYLE_NORMAL);
+
+			pTextureAboutScene_Title = SDL_CreateTextureFromSurface(pWRenderer, pSurfaceAboutScene_Title);
+			aryPTextureAboutScene_Content[0] = SDL_CreateTextureFromSurface(pWRenderer, aryPSurfaceAboutScene_Content[0]);
+			aryPTextureAboutScene_Content[1] = SDL_CreateTextureFromSurface(pWRenderer, aryPSurfaceAboutScene_Content[1]);
+			pTextureAboutScene_Contact = SDL_CreateTextureFromSurface(pWRenderer, pSurfaceAboutScene_Contact);
 		}
 	}
 }
@@ -238,6 +301,8 @@ int main(int argc, char** argv)
 	pWindow = SDL_CreateWindow("Another World 地图编辑器 v1.0.0", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
 	pWRenderer = SDL_CreateRenderer(pWindow, -1, SDL_RENDERER_ACCELERATED);
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best");
+
+	SDL_ShowCursor(SDL_DISABLE);
 
 	ManageScene(ACTION_INIT, 0);
 
@@ -333,24 +398,14 @@ int main(int argc, char** argv)
 						break;
 					case SDLK_RETURN:
 					case SDLK_KP_ENTER:
-						// 处理打开地图操作：运行对应的lua文件，失败则弹窗报错，成功则跳转场景
-						/*switch (iMainMenuItemIndex)
+						if (luaL_dofile(pL, ("maps/" + vMapList[iMapListIndex]).c_str()))
+							SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "地图打开失败", "地图文件损坏，请勿从外部修改地图数据\n如需恢复，请联系开发者：Voidmatrix@outlook.com", pWindow);
+						else
 						{
-						case 0:
-							ManageScene(ACTION_JUMP, SCENE_NEWMAP);
-							break;
-						case 1:
-							ManageScene(ACTION_JUMP, SCENE_OPENMAP);
-							break;
-						case 2:
-							ManageScene(ACTION_JUMP, SCENE_ABOUT);
-							break;
-						case 3:
-							ManageScene(ACTION_QUIT, 0);
-							break;
-						default:
-							break;
-						}*/
+							// 此处补全代码：读取地图数据存储到变量中
+
+							ManageScene(ACTION_JUMP, SCENE_EDITOR);
+						}
 						break;
 					case SDLK_ESCAPE:
 						ManageScene(ACTION_JUMP, SCENE_MAINMENU);
@@ -362,7 +417,8 @@ int main(int argc, char** argv)
 			}
 			else if (CurrentScene == SCENE_ABOUT)
 			{
-
+				if (_event.type == SDL_KEYDOWN && (_event.key.keysym.sym == SDLK_RETURN || _event.key.keysym.sym == SDLK_ESCAPE || _event.key.keysym.sym == SDLK_SPACE))
+					ManageScene(ACTION_JUMP, SCENE_MAINMENU);
 			}
 		}
 
@@ -451,7 +507,7 @@ int main(int argc, char** argv)
 				roundedBoxRGBA(pWRenderer, 175, 115, WINDOW_WIDTH - 175, WINDOW_HEIGHT - 115, 4, 123, 124, 125, 255);
 				roundedBoxRGBA(pWRenderer, 180, 120, WINDOW_WIDTH - 180, WINDOW_HEIGHT - 120, 4, 75, 75, 75, 255);
 
-				SDL_Rect rcText_Title = { 250, 90, pSurfaceOpenMapScene_Title->w, pSurfaceOpenMapScene_Title->h },
+				SDL_Rect rcText_Title = { WINDOW_WIDTH / 2 - pSurfaceOpenMapScene_Title->w / 2, 90, pSurfaceOpenMapScene_Title->w, pSurfaceOpenMapScene_Title->h },
 					aryRCMaps[] = {
 						{ 180, 120 + (WINDOW_HEIGHT - 240) / 8 * 0, WINDOW_WIDTH - 360, (WINDOW_HEIGHT - 240) / 8 },
 						{ 180, 120 + (WINDOW_HEIGHT - 240) / 8 * 1, WINDOW_WIDTH - 360, (WINDOW_HEIGHT - 240) / 8 },
@@ -483,17 +539,18 @@ int main(int argc, char** argv)
 				SDL_Color clrText_MapName = { 28, 48, 92, 255 };
 
 				/* 更新当前显示的地图文件名列表 */
-				for (int i = 0; i < 8; i++)
+				for (int i = 0; i < (vMapList.size() < 8 ? vMapList.size() : 8); i++)
 					vShowingMapList[i] = vMapList[i + iMapShowingListFirstIndex];
 
 				/* 绘制地图文件名称列表 */
 				for (int i = 0; i < vShowingMapList.size(); i++)
 				{
-					SDL_Surface* _pSurfaceText =  TTF_RenderUTF8_Blended(pFont_XINWEI_30, vShowingMapList[i].c_str(), clrText_MapName);
+					SDL_Surface* _pSurfaceText = TTF_RenderUTF8_Blended(pFont_XINWEI_30, vShowingMapList[i].c_str(), clrText_MapName);
 					
 					SDL_Texture* _pTextureText = SDL_CreateTextureFromSurface(pWRenderer, _pSurfaceText);
 					SDL_Rect _rcText = { 205, 135 + (WINDOW_HEIGHT - 240) / 8 * i ,_pSurfaceText->w, _pSurfaceText->h };
 					_rcText.w = _rcText.w > 870 ? 870 : _rcText.w;
+
 					SDL_RenderCopy(pWRenderer, _pTextureText, nullptr, &_rcText);
 					SDL_FreeSurface(_pSurfaceText);
 					SDL_DestroyTexture(_pTextureText);
@@ -504,7 +561,36 @@ int main(int argc, char** argv)
 			}
 			else if (CurrentScene == SCENE_ABOUT)
 			{
+				SDL_SetRenderDrawColor(pWRenderer, 15, 15, 15, 255);
+				SDL_RenderFillRect(pWRenderer, nullptr);
 
+				for (auto& star : vStarList)
+				{
+					if ((star.position.x > WINDOW_WIDTH / 2 - 5 && star.position.x < WINDOW_WIDTH / 2 + 5) || (star.position.y > WINDOW_HEIGHT / 2 - 5 && star.position.y < WINDOW_HEIGHT / 2 + 5))
+					{
+						star.position.x = rand() % WINDOW_WIDTH, star.position.y = rand() % WINDOW_HEIGHT;
+						star.color.r = rand() % 255, star.color.g = rand() % 255, star.color.b = rand() % 255, star.color.a = rand() % 255;
+						star.radius = rand() % 5;
+					}
+					else
+					{
+						star.position.x = star.position.x < WINDOW_WIDTH / 2 ? star.position.x + 1 : star.position.x - 1;
+						star.position.y = star.position.y < WINDOW_HEIGHT / 2 ? star.position.y + 1 : star.position.y - 1;
+						filledCircleRGBA(pWRenderer, star.position.x, star.position.y, star.radius, star.color.r, star.color.g, star.color.b, star.color.a);
+					}
+				}
+
+				SDL_Rect rcText_Title = { 115, 175, pSurfaceAboutScene_Title->w, pSurfaceAboutScene_Title->h },
+					aryRCContentText[] = {
+						{ WINDOW_WIDTH / 2 - aryPSurfaceAboutScene_Content[0]->w / 2 + 125, 325, aryPSurfaceAboutScene_Content[0]->w, aryPSurfaceAboutScene_Content[0]->h },
+						{ WINDOW_WIDTH / 2 - aryPSurfaceAboutScene_Content[1]->w / 2, 415, aryPSurfaceAboutScene_Content[1]->w, aryPSurfaceAboutScene_Content[1]->h }
+					},
+					rcText_Contact = { WINDOW_WIDTH / 2 - pSurfaceAboutScene_Contact->w / 2, aryRCContentText[1].y + 175, pSurfaceAboutScene_Contact->w, pSurfaceAboutScene_Contact->h };
+
+				SDL_RenderCopy(pWRenderer, pTextureAboutScene_Title, nullptr, &rcText_Title);
+				for (int i = 0; i < 2; i++)
+					SDL_RenderCopy(pWRenderer, aryPTextureAboutScene_Content[i], nullptr, &aryRCContentText[i]);
+				SDL_RenderCopy(pWRenderer, pTextureAboutScene_Contact, nullptr, &rcText_Contact);
 			}
 		}
 
