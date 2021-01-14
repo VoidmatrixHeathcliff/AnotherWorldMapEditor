@@ -1,0 +1,67 @@
+﻿  Main.cpp
+    正在创建库 D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\AWMapEditor.lib 和对象 D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\AWMapEditor.exp
+LINK : warning LNK4098: 默认库“LIBCMT”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
+  正在生成代码
+  1 of 890 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    12 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+SDL2_image.lib(IMG.obj) : warning LNK4099: 未找到 PDB“SDL2_image.pdb”(使用“SDL2_image.lib(IMG.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\SDL2_image.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(IMG_webp.obj) : warning LNK4099: 未找到 PDB“SDL2_image.pdb”(使用“SDL2_image.lib(IMG_webp.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\SDL2_image.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(IMG_lbm.obj) : warning LNK4099: 未找到 PDB“SDL2_image.pdb”(使用“SDL2_image.lib(IMG_lbm.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\SDL2_image.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(IMG_xv.obj) : warning LNK4099: 未找到 PDB“SDL2_image.pdb”(使用“SDL2_image.lib(IMG_xv.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\SDL2_image.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(IMG_tga.obj) : warning LNK4099: 未找到 PDB“SDL2_image.pdb”(使用“SDL2_image.lib(IMG_tga.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\SDL2_image.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(IMG_bmp.obj) : warning LNK4099: 未找到 PDB“SDL2_image.pdb”(使用“SDL2_image.lib(IMG_bmp.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\SDL2_image.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(IMG_png.obj) : warning LNK4099: 未找到 PDB“SDL2_image.pdb”(使用“SDL2_image.lib(IMG_png.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\SDL2_image.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(IMG_pcx.obj) : warning LNK4099: 未找到 PDB“SDL2_image.pdb”(使用“SDL2_image.lib(IMG_pcx.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\SDL2_image.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(IMG_tif.obj) : warning LNK4099: 未找到 PDB“SDL2_image.pdb”(使用“SDL2_image.lib(IMG_tif.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\SDL2_image.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(IMG_xcf.obj) : warning LNK4099: 未找到 PDB“SDL2_image.pdb”(使用“SDL2_image.lib(IMG_xcf.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\SDL2_image.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(IMG_xpm.obj) : warning LNK4099: 未找到 PDB“SDL2_image.pdb”(使用“SDL2_image.lib(IMG_xpm.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\SDL2_image.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(IMG_jpg.obj) : warning LNK4099: 未找到 PDB“SDL2_image.pdb”(使用“SDL2_image.lib(IMG_jpg.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\SDL2_image.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(IMG_svg.obj) : warning LNK4099: 未找到 PDB“SDL2_image.pdb”(使用“SDL2_image.lib(IMG_svg.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\SDL2_image.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(IMG_gif.obj) : warning LNK4099: 未找到 PDB“SDL2_image.pdb”(使用“SDL2_image.lib(IMG_gif.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\SDL2_image.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(IMG_pnm.obj) : warning LNK4099: 未找到 PDB“SDL2_image.pdb”(使用“SDL2_image.lib(IMG_pnm.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\SDL2_image.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jdapimin.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jdapimin.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jdapistd.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jdapistd.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jdmaster.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jdmaster.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jcparam.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jcparam.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jcapimin.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jcapimin.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jerror.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jerror.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jcapistd.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jcapistd.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jdmarker.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jdmarker.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jmemmgr.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jmemmgr.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jcomapi.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jcomapi.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jdinput.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jdinput.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jquant1.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jquant1.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jdmerge.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jdmerge.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jdsample.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jdsample.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jdhuff.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jdhuff.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jquant2.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jquant2.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jdarith.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jdarith.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jdcoefct.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jdcoefct.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jdcolor.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jdcolor.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jdmainct.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jdmainct.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jddctmgr.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jddctmgr.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jutils.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jutils.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jdpostct.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jdpostct.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jcmarker.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jcmarker.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jcinit.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jcinit.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jmemnobs.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jmemnobs.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jaricom.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jaricom.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jidctint.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jidctint.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jidctfst.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jidctfst.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jidctflt.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jidctflt.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jcarith.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jcarith.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jcprepct.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jcprepct.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jcsample.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jcsample.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jcmainct.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jcmainct.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jcmaster.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jcmaster.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jccoefct.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jccoefct.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jccolor.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jccolor.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jchuff.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jchuff.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jcdctmgr.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jcdctmgr.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jfdctint.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jfdctint.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jfdctfst.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jfdctfst.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_image.lib(jfdctflt.obj) : warning LNK4099: 未找到 PDB“jpeg.pdb”(使用“SDL2_image.lib(jfdctflt.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\jpeg.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+SDL2_ttf.lib(SDL_ttf.obj) : warning LNK4099: 未找到 PDB“SDL2_ttf.pdb”(使用“SDL2_ttf.lib(SDL_ttf.obj)”或在“D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\SDL2_ttf.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+  AWMapEditor.vcxproj -> D:\Visual Studio 2019 Projects\AWMapEditor\x64\Release\AWMapEditor.exe

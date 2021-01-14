@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AWMapEditor", "AWMapEditor\AWMapEditor.vcxproj", "{B85247D7-6193-4762-942E-0C859F8BE869}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B85247D7-6193-4762-942E-0C859F8BE869}.Debug|x64.ActiveCfg = Debug|x64
+		{B85247D7-6193-4762-942E-0C859F8BE869}.Debug|x64.Build.0 = Debug|x64
+		{B85247D7-6193-4762-942E-0C859F8BE869}.Debug|x86.ActiveCfg = Debug|Win32
+		{B85247D7-6193-4762-942E-0C859F8BE869}.Debug|x86.Build.0 = Debug|Win32
+		{B85247D7-6193-4762-942E-0C859F8BE869}.Release|x64.ActiveCfg = Release|x64
+		{B85247D7-6193-4762-942E-0C859F8BE869}.Release|x64.Build.0 = Release|x64
+		{B85247D7-6193-4762-942E-0C859F8BE869}.Release|x86.ActiveCfg = Release|Win32
+		{B85247D7-6193-4762-942E-0C859F8BE869}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EF901B8C-3590-47C3-A597-B31E569A0365}
+	EndGlobalSection
+EndGlobal
