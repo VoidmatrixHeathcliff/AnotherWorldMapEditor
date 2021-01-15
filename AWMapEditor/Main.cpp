@@ -40,6 +40,7 @@ struct Star
 	SDL_Point position;
 	SDL_Color color;
 	int radius;
+	int speed;
 };
 
 int CurrentScene = SCENE_MAINMENU;
@@ -69,6 +70,9 @@ SDL_Surface* aryPSurfaceOpenMapTips[2] = { nullptr, nullptr };
 SDL_Surface* pSurfaceAboutScene_Title = nullptr;
 SDL_Surface* aryPSurfaceAboutScene_Content[2] = { nullptr, nullptr };
 SDL_Surface* pSurfaceAboutScene_Contact = nullptr;
+SDL_Surface* pSurfaceNewMapScene_Title = nullptr;
+SDL_Surface* aryPSurfaceNewMapSceneTips[2] = { nullptr, nullptr };
+SDL_Surface* pSurfaceNewMapScene_Suffix = nullptr;
 
 SDL_Texture* pTextureBackground = nullptr;
 SDL_Texture* pTextureMainMenuTitle_Another = nullptr;
@@ -82,10 +86,15 @@ SDL_Texture* aryPTextureOpenMapTips[2] = { nullptr, nullptr };
 SDL_Texture* pTextureAboutScene_Title = nullptr;
 SDL_Texture* aryPTextureAboutScene_Content[2] = { nullptr, nullptr };
 SDL_Texture* pTextureAboutScene_Contact = nullptr;
+SDL_Texture* pTextureNewMapScene_Title = nullptr;
+SDL_Texture* aryPTextureNewMapTips[2] = { nullptr, nullptr };
+SDL_Texture* pTextureNewMapScene_Suffix = nullptr;
 
 int iMainMenuItemIndex = 0, iPreMenuItemIndex = MENUITEMLENGTH - 1, iMapListIndex = 0, iMapShowingListFirstIndex = 0;
 
-string aryStrMainMenuItem[MENUITEMLENGTH] = { "新 建 地 图", "打 开 地 图", "关 于", "退 出" };
+string aryStrMainMenuItem[MENUITEMLENGTH] = { "新 建 地 图", "打 开 地 图", "关 于", "退 出" }, strNewMapName = "";
+
+char validCharaList[] = {' ', 'A', 'a', 'B' , 'b' , 'C' , 'c' , 'D' , 'd' , 'E' , 'e' , 'F' , 'f' , 'G' , 'g' , 'H' , 'h' , 'I' , 'i' , 'J' , 'j' , 'K' , 'k' , 'L' , 'l' , 'M' , 'm' , 'N' , 'n' , 'O' , 'o' , 'P' , 'p' , 'Q' , 'q' , 'R' , 'r' , 'S' , 's' , 'T' , 't' , 'U' , 'u' , 'V' , 'v' , 'W' , 'w' , 'X' , 'x' , 'Y' , 'y' , 'Z' , 'z' , '0' , '1' , '2' , '3' , '4' , '5' , '6' , '7' , '8' , '9' , '!' , '！' , '@' , '#' , '$' , '￥' , '%' , '^' , '…' , '&' , '*' , '（' , '（' , ')', '）', '-', '_', '—', '+', '=', '{', '}', '[', ']', '【', '】', '、', '：', ';', '；', '“', '”', '‘', '’', '《', '》', ',', '，', '.', '。', '？', '。' , '~' , '`', '·' };
 
 SDL_Color clrText_MenuItemIdle = { 211, 203, 198, 255 }, clrText_MenuItemHover = { 254, 242, 99, 255 };
 
@@ -130,7 +139,7 @@ void ManageScene(int action, int scene)
 		}
 		else if (CurrentScene == SCENE_NEWMAP)
 		{
-
+			SDL_StopTextInput();
 		}
 		else if (CurrentScene == SCENE_OPENMAP)
 		{
@@ -220,7 +229,23 @@ void ManageScene(int action, int scene)
 		}
 		else if (CurrentScene == SCENE_NEWMAP)
 		{
+			SDL_StartTextInput();
 
+			pFont_XINWEI_70 = TTF_OpenFont("resource/font/STXINWEI.TTF", 70);
+			pFont_XINWEI_40 = TTF_OpenFont("resource/font/STXINWEI.TTF", 40);
+			pFont_XINWEI_25 = TTF_OpenFont("resource/font/STXINWEI.TTF", 25);
+
+			SDL_Color clrText_Title_Front = { 248, 244, 230, 255 }, clrText_Tip = { 226, 4, 27, 255 }, clrText_Suffix = { 171, 206, 216, 255 };
+
+			pSurfaceNewMapScene_Title = TTF_RenderUTF8_Blended(pFont_XINWEI_70, "§ 新建地图 §", clrText_Title_Front);
+			aryPSurfaceNewMapSceneTips[0] = TTF_RenderUTF8_Blended(pFont_XINWEI_25, "请输入新地图的文件名，并按下 Enter 确认", clrText_Tip);
+			aryPSurfaceNewMapSceneTips[1] = TTF_RenderUTF8_Blended(pFont_XINWEI_25, "请确保文件名中无中文及其他特殊字符", clrText_Tip);
+			pSurfaceNewMapScene_Suffix = TTF_RenderUTF8_Blended(pFont_XINWEI_40, ".map", clrText_Suffix);
+
+			pTextureNewMapScene_Title = SDL_CreateTextureFromSurface(pWRenderer, pSurfaceNewMapScene_Title);
+			aryPTextureNewMapTips[0] = SDL_CreateTextureFromSurface(pWRenderer, aryPSurfaceNewMapSceneTips[0]);
+			aryPTextureNewMapTips[1] = SDL_CreateTextureFromSurface(pWRenderer, aryPSurfaceNewMapSceneTips[1]);
+			pTextureNewMapScene_Suffix = SDL_CreateTextureFromSurface(pWRenderer, pSurfaceNewMapScene_Suffix);
 		}
 		else if (CurrentScene == SCENE_OPENMAP)
 		{
@@ -234,7 +259,7 @@ void ManageScene(int action, int scene)
 
 			pSurfaceOpenMapScene_Title = TTF_RenderUTF8_Shaded(pFont_XINWEI_40, "§ 打开地图 §", clrText_Title_Front, clrText_Title_Back);
 			aryPSurfaceOpenMapTips[0] = TTF_RenderUTF8_Blended(pFont_XINWEI_25, "按下 ↑ ↓ ← → 移动光标，按下 Enter 打开，按下 Esc 退回到主菜单", clrText_Tip);
-			aryPSurfaceOpenMapTips[1] = TTF_RenderUTF8_Blended(pFont_XINWEI_25, "将地图文件放置于“maps”文件夹下，并确保文件名中无中文及其他特殊符号", clrText_Tip);
+			aryPSurfaceOpenMapTips[1] = TTF_RenderUTF8_Blended(pFont_XINWEI_25, "将地图文件放置于“maps”文件夹下，并确保文件名中无中文及其他特殊字符", clrText_Tip);
 
 			pTextureOpenMapScene_Title = SDL_CreateTextureFromSurface(pWRenderer, pSurfaceOpenMapScene_Title);
 			aryPTextureOpenMapTips[0] = SDL_CreateTextureFromSurface(pWRenderer, aryPSurfaceOpenMapTips[0]);
@@ -269,6 +294,7 @@ void ManageScene(int action, int scene)
 				_star.position.x = rand() % WINDOW_WIDTH, _star.position.y = rand() % WINDOW_HEIGHT;
 				_star.color.r = rand() % 255, _star.color.g = rand() % 255, _star.color.b = rand() % 255, _star.color.a = rand() % 255;
 				_star.radius = rand() % 5;
+				_star.speed = rand() % 2 + 1;
 				vStarList.push_back(_star);
 			}
 
@@ -302,8 +328,6 @@ int main(int argc, char** argv)
 	pWRenderer = SDL_CreateRenderer(pWindow, -1, SDL_RENDERER_ACCELERATED);
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best");
 
-	SDL_ShowCursor(SDL_DISABLE);
-
 	ManageScene(ACTION_INIT, 0);
 
 	while (bIsRunning)
@@ -316,8 +340,8 @@ int main(int argc, char** argv)
 		SDL_Event _event;
 		if (SDL_PollEvent(&_event))
 		{
-			if (_event.type == SDL_QUIT)
-				bIsRunning = false;
+			if (_event.type == SDL_QUIT || (_event.type == SDL_KEYDOWN && _event.key.keysym.sym == SDLK_ESCAPE && CurrentScene == SCENE_MAINMENU))
+				ManageScene(ACTION_QUIT, 0);
 
 			/* 处理不同场景下的事件 */
 			if (CurrentScene == SCENE_EDITOR)
@@ -374,7 +398,64 @@ int main(int argc, char** argv)
 			}
 			else if (CurrentScene == SCENE_NEWMAP)
 			{
+				switch (_event.type)
+				{
+				case SDL_KEYDOWN:
+					switch (_event.key.keysym.sym)
+					{
+					case SDLK_ESCAPE:
+						ManageScene(ACTION_JUMP, SCENE_MAINMENU);
+						break;
+					case SDLK_RETURN:
+					case SDLK_KP_ENTER:
+						strNewMapName.erase(0, strNewMapName.find_first_not_of(" "));
+						if (!strNewMapName.empty())
+						{
+							const SDL_MessageBoxButtonData buttons[] = {
+								{ SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT, 1, "确定" },
+								{ SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 2, "取消" },
+							};
+							const SDL_MessageBoxColorScheme colorScheme = {
+								{
+									{ 255, 0, 0 },
+									{ 0, 255, 0 },
+									{ 255, 255, 0 },
+									{ 0, 0, 255 },
+									{ 255, 0, 255 }
+								}
+							};
+							const SDL_MessageBoxData messageboxdata = {
+								SDL_MESSAGEBOX_INFORMATION, pWindow, "提示", string("确定要创建地图：\"").append(strNewMapName).append(".map\" 吗？\n\n创建的地图文件将位于 “maps” 文件夹下").c_str(), SDL_arraysize(buttons), buttons, &colorScheme };
 
+							int buttonid = 0;
+							SDL_ShowMessageBox(&messageboxdata, &buttonid);
+							if (buttonid == 1) 
+							{
+								/* 处理生成指定名称的地图文件 */
+							}
+						}
+						else
+							SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_WARNING, "地图创建失败", "地图文件名不能为空！", pWindow);
+						break;
+					case SDLK_BACKSPACE:
+					case SDLK_KP_BACKSPACE:
+						strNewMapName = strNewMapName.substr(0, strNewMapName.length() - 1);
+						break;
+					default:
+						break;
+					}
+					break;
+				case SDL_TEXTINPUT:
+					for (auto c : validCharaList)
+						if (c == _event.text.text[0])
+						{
+							strNewMapName += c;
+							break;
+						}
+					break;
+				default:
+					break;
+				}
 			}
 			else if (CurrentScene == SCENE_OPENMAP)
 			{
@@ -496,7 +577,42 @@ int main(int argc, char** argv)
 			}
 			else if (CurrentScene == SCENE_NEWMAP)
 			{
+				SDL_SetRenderDrawColor(pWRenderer, 75, 75, 75, 255);
+				SDL_RenderFillRect(pWRenderer, nullptr);
 
+				SDL_Rect rcText_Title = { WINDOW_WIDTH / 2 - pSurfaceNewMapScene_Title->w / 2, 125, pSurfaceNewMapScene_Title->w, pSurfaceNewMapScene_Title->h },
+					aryRCTips[] = {
+						{ 10, WINDOW_HEIGHT - aryPSurfaceNewMapSceneTips[0]->h - aryPSurfaceNewMapSceneTips[1]->h - 20, aryPSurfaceNewMapSceneTips[0]->w, aryPSurfaceNewMapSceneTips[0]->h },
+						{ 10, WINDOW_HEIGHT - aryPSurfaceNewMapSceneTips[1]->h - 10, aryPSurfaceNewMapSceneTips[1]->w, aryPSurfaceNewMapSceneTips[1]->h }
+				},
+					rcText_Suffix = { WINDOW_WIDTH - pSurfaceNewMapScene_Suffix->w - 125, WINDOW_HEIGHT / 2 - pSurfaceNewMapScene_Suffix->h / 2, pSurfaceNewMapScene_Suffix->w, pSurfaceNewMapScene_Suffix->h },
+					rcInputBox = { 125, rcText_Suffix.y - 10, rcText_Suffix.x - 145, rcText_Suffix.h + 20 };
+
+				/* 绘制输入框 */
+				SDL_SetRenderDrawColor(pWRenderer, 215, 237, 239, 255);
+				SDL_RenderFillRect(pWRenderer, &rcInputBox);
+				thickLineRGBA(pWRenderer, rcInputBox.x + rcInputBox.w, rcInputBox.y, rcInputBox.x + rcInputBox.w, rcInputBox.y + rcInputBox.h, 4, 235, 246, 247, 255);
+				thickLineRGBA(pWRenderer, rcInputBox.x, rcInputBox.y + rcInputBox.h, rcInputBox.x + rcInputBox.w, rcInputBox.y + rcInputBox.h, 4, 235, 246, 247, 255);
+				thickLineRGBA(pWRenderer, rcInputBox.x, rcInputBox.y, rcInputBox.x + rcInputBox.w, rcInputBox.y, 4, 60, 142, 150, 255);
+				thickLineRGBA(pWRenderer, rcInputBox.x, rcInputBox.y, rcInputBox.x, rcInputBox.y + rcInputBox.h, 4, 60, 142, 150, 255);
+
+				/* 绘制输入文字 */
+				if (!strNewMapName.empty())
+				{
+					SDL_Color clrText_NewMapName = { 222, 176, 104, 255 };
+					SDL_Surface* _pSurfaceText = TTF_RenderUTF8_Blended(pFont_XINWEI_40, strNewMapName.c_str(), clrText_NewMapName);
+					SDL_Texture* _pTextureText = SDL_CreateTextureFromSurface(pWRenderer, _pSurfaceText);
+					SDL_Rect _rcCutNewMapNameText = { 0, 0, rcInputBox.w - 40, _pSurfaceText->h },
+						rcNewMapNameTextArea = { rcInputBox.x + 20, rcInputBox.y + 10, _rcCutNewMapNameText.w < _pSurfaceText->w ? _rcCutNewMapNameText.w : _pSurfaceText->w, _pSurfaceText->h };
+					SDL_RenderCopy(pWRenderer, _pTextureText, &_rcCutNewMapNameText, &rcNewMapNameTextArea);
+					SDL_FreeSurface(_pSurfaceText);
+					SDL_DestroyTexture(_pTextureText);
+				}
+				
+				SDL_RenderCopy(pWRenderer, pTextureNewMapScene_Title, nullptr, &rcText_Title);
+				for (int i = 0; i < 2; i++)
+					SDL_RenderCopy(pWRenderer, aryPTextureNewMapTips[i], nullptr, &aryRCTips[i]);
+				SDL_RenderCopy(pWRenderer, pTextureNewMapScene_Suffix, nullptr, &rcText_Suffix);
 			}
 			else if (CurrentScene == SCENE_OPENMAP)
 			{
@@ -574,8 +690,8 @@ int main(int argc, char** argv)
 					}
 					else
 					{
-						star.position.x = star.position.x < WINDOW_WIDTH / 2 ? star.position.x + 1 : star.position.x - 1;
-						star.position.y = star.position.y < WINDOW_HEIGHT / 2 ? star.position.y + 1 : star.position.y - 1;
+						star.position.x = star.position.x < WINDOW_WIDTH / 2 ? star.position.x + star.speed : star.position.x - star.speed;
+						star.position.y = star.position.y < WINDOW_HEIGHT / 2 ? star.position.y + star.speed : star.position.y - star.speed;
 						filledCircleRGBA(pWRenderer, star.position.x, star.position.y, star.radius, star.color.r, star.color.g, star.color.b, star.color.a);
 					}
 				}
